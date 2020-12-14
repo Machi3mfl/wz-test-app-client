@@ -12,6 +12,7 @@ const Rules = () => {
 
     const router = useRouter();
 
+    // rules table columns
     const [columns, setColumns] = useState([
         { 
             title: '#',
@@ -48,20 +49,19 @@ const Rules = () => {
     // spinner
     const { setShowSpinner } = useContext(SpinnerContext);
 
-
     // loading change
     useEffect(() => {
         setShowSpinner(loading);
     }, [loading]);
 
+
+    // component init
     useEffect( () => {
-
         getRules();
-
     }, []);
 
     /**
-     * 
+     * Redirect to rule page
      * @param {*} data 
      */
     const redirectToDetail = (data) => {
@@ -69,7 +69,7 @@ const Rules = () => {
     }
 
     /**
-     * 
+     * Load more items from page
      * @param {*} pageIndex 
      */
     const loadMore = pageIndex => {
@@ -80,6 +80,7 @@ const Rules = () => {
         <div>
             <Layout>
                 <div className="container pt-2">
+                    {/*** Header - Back button and title  ***/}
                     <div className="row pt-4 pb-2 mb-3 border-bottom">
                             <button type="button" className="btn btn-light col-1 pr-4">
                                 <span className="material-icons fs-2 text-primary" onClick={() => router.back() }>arrow_back</span>
@@ -88,6 +89,7 @@ const Rules = () => {
                     </div>
                 
                     <div className="row">
+                        {/*** Rules Table  ***/}
                         <Table 
                             data={rules} 
                             columns={columns}
@@ -96,6 +98,7 @@ const Rules = () => {
                     </div>
                     
                     <div className="row mt-3">
+                        {/*** TTable Pagination  ***/}
                         <Pagination 
                             itemsPerPage={itemsPerPage}
                             totalItems={totalItems}

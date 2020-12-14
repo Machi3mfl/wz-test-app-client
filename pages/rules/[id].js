@@ -11,23 +11,21 @@ import RuleContext from '../../app/context/rules/ruleContext';
 const Rule = () => {
 
     const router = useRouter();
+    // id query param
     const { id } = router.query
-     // agent context
-    const ruleContext = useContext(RuleContext);
-
+    // rule context
     const { 
         currentRule,
         currentRuleId,
         setCurrentRuleId,
-        getRuleById } = ruleContext;
+        getRuleById } = useContext(RuleContext);
 
-
-
+    // when url id param change
     useEffect( () => {
         setCurrentRuleId(id);
     },[id]);
 
-    
+    // when selected rule change
     useEffect( () => {
         if(currentRuleId){
             getRuleById(currentRuleId);
@@ -41,7 +39,9 @@ const Rule = () => {
         <div>
             <Layout>
                 <div className="container pt-4">
+                    {/*** Header  ***/}
                     <div className="row border-bottom mb-3">
+                        {/*** Title and Breadcrumb navigation  ***/}
                         <div className="col-8">
                             <h1>Rule #{currentRuleId}</h1>
                         </div>
@@ -56,6 +56,7 @@ const Rule = () => {
                             </nav>
                         </div>
                     </div>
+                    {/*** Rule Detail  ***/}
                     { currentRule ? 
                         <RuleView data={currentRule}/> : null
                     }

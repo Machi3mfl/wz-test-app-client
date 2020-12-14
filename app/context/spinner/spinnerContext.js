@@ -4,6 +4,7 @@ export const SpinnerContext = createContext();
 
 const SpinnerProvider = (props) => {
 
+    // show or hide spinner
     const [showSpinner, setShowSpinner] = useState(false);
 
     return (

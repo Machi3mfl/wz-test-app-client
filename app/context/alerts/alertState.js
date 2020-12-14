@@ -26,10 +26,11 @@ const AlertState = props => {
     // create reducer
     const [state, dispatch] = useReducer(AlertReducer, initialState);
 
+    // items per page in table
     const { itemsPerPage } = state;
 
     /**
-     * get proyects from api
+     * get alerts from api
      */
     const getAlerts = async (pageIndex) => {
 

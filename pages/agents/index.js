@@ -12,6 +12,7 @@ const Agents = () => {
 
     const router = useRouter();
 
+    // table columns
     const [columns, setColumns] = useState([
         { 
             title: '#',
@@ -32,12 +33,6 @@ const Agents = () => {
     ]);
 
     // agent context
-    const agentContext = useContext(AgentContext);
-
-     // spinner
-     const { setShowSpinner } = useContext(SpinnerContext);
-
-    
     const { 
         agents,
         loading,
@@ -45,7 +40,10 @@ const Agents = () => {
         itemsPerPage, 
         currentPage,
         getAgents,
-        goToAgentDetail } = agentContext;
+        goToAgentDetail } = useContext(AgentContext);
+
+    // spinner
+    const { setShowSpinner } = useContext(SpinnerContext);
 
     
     // loading change
@@ -53,15 +51,13 @@ const Agents = () => {
         setShowSpinner(loading);
     }, [loading]);
 
-    // component init
+    // component init - get agents
     useEffect( () => {
-
         getAgents();
-
     }, []);
 
     /**
-     * 
+     * agent clicked in table
      * @param {*} data 
      */
     const redirectToDetail = (data) => {
@@ -69,7 +65,7 @@ const Agents = () => {
     }
 
     /**
-     * 
+     * Load more agents, load page with new items
      * @param {*} pageIndex 
      */
     const loadMoreAgents = pageIndex => {
@@ -79,7 +75,9 @@ const Agents = () => {
     return (  
         <div>
             <Layout>
+                {/*********   Header   *********/}
                 <div className="container pt-2">
+                    {/*********   Title and back button   *********/}
                     <div className="row pt-4 pb-2 mb-3 border-bottom">
                             <button type="button" className="btn btn-light col-1 pr-4">
                                 <span className="material-icons fs-2 text-primary" onClick={() => router.back() }>arrow_back</span>
@@ -87,6 +85,7 @@ const Agents = () => {
                             <span className="h1 col">Agents</span>
                     </div>
                     <div className="row">
+                    {/*********   Agents Table   *********/}
                         <Table 
                             data={agents} 
                             columns={columns}
@@ -94,6 +93,7 @@ const Agents = () => {
                             onRowClicked={redirectToDetail}/>
                     </div>
                     <div className="row mt-3">
+                    {/*********   Pagination  *********/}
                         <Pagination 
                             itemsPerPage={itemsPerPage}
                             totalItems={totalItems}

@@ -31,7 +31,9 @@ const AgentState = props => {
     // create reducer
     const [state, dispatch] = useReducer(AgentReducer, initialState);
 
+    // qty items per page in table
     const { itemsPerPage } = state;
+
     const router = useRouter();
 
     /**
@@ -48,7 +50,6 @@ const AgentState = props => {
             });
 
             const res = await axiosClient.get(`/agents?limit=${itemsPerPage}&offset=${(currentPage - 1) * itemsPerPage}`);
-
     
             let payload = {
                 ...res.data,
@@ -73,7 +74,7 @@ const AgentState = props => {
 
 
     /**
-     * 
+     * Go to agent detail page and set id for selected agent
      * @param {*} id 
      */
     const goToAgentDetail = id => {
@@ -82,7 +83,7 @@ const AgentState = props => {
     }
 
     /**
-     * 
+     * Save current id in state
      * @param {*} id 
      */
     const setCurrentAgentId = id => {
@@ -93,6 +94,7 @@ const AgentState = props => {
     }
 
     /**
+     * Get agent data from api
      * 
      * @param {*} id 
      */

@@ -2,6 +2,9 @@ import React from "react";
 import styled from "@emotion/styled";
 import { motion, AnimatePresence } from "framer-motion";
 
+/******************************************
+ *  Modal css styles
+ ******************************************/
 const Overlay = styled(motion.div)`
   position: fixed;
   top: 0;
@@ -44,22 +47,29 @@ const containerVariant = {
   exit: { top: "-50%" }
 };
 
+////////////////////////////////////////////////////////////////////////
+
+
 const Modal = ({ handleClose, children, isOpen }) => {
   return (
     <AnimatePresence>
-      {isOpen && (
+      {isOpen && 
+
+        (
+        /** Modal Overlay */     
         <Overlay
           initial={"initial"}
           animate={"isOpen"}
           exit={"exit"}
           variants={modalVariant}
         >
+          {/** Modal Container */}
           <ModalContainer variants={containerVariant}>
+            {/** Modal Close Button */}
             <CloseButton
               onClick={handleClose}
               xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 20.39 20.39"
-            >
+              viewBox="0 0 20.39 20.39">
               <title>close</title>
               <line
                 x1="19.39"
@@ -84,10 +94,11 @@ const Modal = ({ handleClose, children, isOpen }) => {
                 strokeWidth="2"
               />
             </CloseButton>
+            {/** Modal Content */}
             {children}
           </ModalContainer>
-        </Overlay>
-      )}
+        </Overlay>)
+      }
     </AnimatePresence>
   );
 };

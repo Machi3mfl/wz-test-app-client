@@ -1,12 +1,13 @@
 import { useState, useEffect } from 'react';
 const Pagination = ({ totalItems, itemsPerPage, initialCurrentPage, onPageChange }) => {
 
+
     const [pages, setPages ] = useState([]);
     const [totalPages, setTotalPages] = useState(null);
     const [currentPage, setCurrentPage] = useState(1);
 
+    // set pagination data if items change
     useEffect( () => {
-
         // init paginator
         getPaginationData();
 
@@ -75,7 +76,6 @@ const Pagination = ({ totalItems, itemsPerPage, initialCurrentPage, onPageChange
                     </nav>
                 </div>
             </div>
-           
         </>
     );
 }

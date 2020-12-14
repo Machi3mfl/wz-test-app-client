@@ -3,7 +3,8 @@ import AlertList from '../alerts/AlertList';
 const Rule = ({ data }) => {
 
 
-    const header = [
+    // Card data config
+    const viewData = [
         { 
             title: 'Id',
             field: 'id'
@@ -16,19 +17,17 @@ const Rule = ({ data }) => {
             title: 'Total Alerts',
             field: 'total_alerts'
         }
-    ]
-    
-  
-
+    ];
 
     return (  
         <>
             <div className="row">
+                {/* Carda data  */}
                 <div className="card bg-light border-0">
                     <div className="card-body row">
                         {
-                            header && data ? 
-                                header.map( (item,index) => (
+                            viewData && data ? 
+                                viewData.map( (item,index) => (
                                     <div className="col-lg col-sm-12" key={index}>
                                         <label htmlFor="staticEmail" className="col-sm-5 col-form-label col-form-label-lg text-muted">{item.title}</label>
                                         <div className="col-sm-7">
@@ -41,6 +40,7 @@ const Rule = ({ data }) => {
                 </div>
             </div>
             <div className="row">
+                 {/* Related alerts Table  */}
                 <AlertList alerts={data.alerts}/>
             </div>
         </>

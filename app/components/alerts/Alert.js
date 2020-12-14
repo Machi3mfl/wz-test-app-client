@@ -4,8 +4,8 @@ import { GetPropertyValue } from '../../../utils/helpers';
 
 const Alert = ({data}) => {
 
-    const header = [
-        //{ title: 'Index', field: '_index' },
+    // Card data 
+    const viewData = [
         { title: 'Timestamp', field: '_source.timestamp' },
         { title: 'Rule Id', field: '_source.rule.id', link: '/rules' },
         { title: 'Rule Description', field: '_source.rule.description' },
@@ -13,22 +13,24 @@ const Alert = ({data}) => {
         { title: 'Agent Name', field: '_source.agent.name' },
     ]
     
-    if(!header || !data){
+    if(!viewData || !data){
         return null;
     }
     
     return ( 
         <div className="container pt-2">
+            {/* Header */}
             <div className="row pt-4 pb-2 mb-3 border-bottom">
                 <h1>Alert #{data.id}</h1>
             </div>
             <div className="row">
+                 {/* Card data */}
                 <div className="card bg-light border-0 mb-4">
                     <div className="card-body row">
                         {
-                            header && data ? 
+                            viewData && data ? 
                             
-                            header.map( (item,index) => (
+                            viewData.map( (item,index) => (
                                 <div className="col col-sm-4" key={index}>
                                     <h4>{item.title}</h4>
                                     <p className="fs-6">
@@ -44,6 +46,7 @@ const Alert = ({data}) => {
                 </div>
             </div>
             <div className="row">
+                 {/* Alert JSON container */}
                 <pre className="bg-light p-4">
                     <code>
                         { JSON.stringify(data, null, 4) }

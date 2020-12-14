@@ -12,9 +12,6 @@ import AlertContext from '../../app/context/alerts/alertContext';
 import { SpinnerContext } from '../../app/context/spinner/spinnerContext';
 
 
-
-
-
 const Alerts = () => {
 
     const router = useRouter();
@@ -38,15 +35,13 @@ const Alerts = () => {
     const [showModal, setShowModal] = useState(false);
 
     // alert context
-    const alertContext = useContext(AlertContext);
-    // spinner
     const { 
         alerts,
         loading,
         totalItems,
         itemsPerPage, 
         currentPage,
-        getAlerts } = alertContext;
+        getAlerts } = useContext(AlertContext);
         
     // spinner state
     const { setShowSpinner } = useContext(SpinnerContext);
@@ -58,16 +53,23 @@ const Alerts = () => {
 
     // component init
     useEffect( () => {
-
         getAlerts();
-
     }, []);
 
+    /**
+     * When item table is clicked
+     * @param {*} data 
+     * @param {*} index 
+     */
     const redirectToDetail = (data, index) => {
         setSelectedAlert(data);
         setShowModal(true);
     }
 
+    /**
+     * Load more pages
+     * @param {*} pageIndex 
+     */
     const loadMoreAlerts = pageIndex => {
         getAlerts(pageIndex);
     }
@@ -75,17 +77,18 @@ const Alerts = () => {
     return (  
         <div>
             <Layout>
+                {/*** Header  ***/}
                 <div className="container pt-2">
                     <div className="row pt-4 pb-2 mb-3 border-bottom">
-                       
+                        {/*** Title and back button  ***/}
                             <button type="button" className="btn btn-light col-1 pr-4">
                                 <span className="material-icons fs-2 text-primary" onClick={() => router.back() }>arrow_back</span>
                             </button>
                             <span className="h1 col">Alerts</span>
-                        
                     </div>
                 
                     <div className="row">
+                        {/*** Alerts table ***/}
                         <Table 
                             data={alerts} 
                             columns={columns}
@@ -94,6 +97,7 @@ const Alerts = () => {
                     </div>
                     
                     <div className="row mt-3">
+                        {/*** Pagination  ***/}
                         <Pagination 
                             itemsPerPage={itemsPerPage}
                             totalItems={totalItems}

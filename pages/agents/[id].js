@@ -11,23 +11,22 @@ import AgentContext from '../../app/context/agents/agentContext';
 const Agent = () => {
 
     const router = useRouter();
+    // id query param
     const { id } = router.query
      // agent context
-    const agentContext = useContext(AgentContext);
-
     const { 
         currentAgent,
         currentAgentId,
         setCurrentAgentId,
-        getAgentById } = agentContext;
+        getAgentById }  = useContext(AgentContext);
 
-
-
+    // if id param change
     useEffect( () => {
         setCurrentAgentId(id);
     },[id]);
 
     
+    // if current agent id change
     useEffect( () => {
         if(currentAgentId){
             getAgentById(currentAgentId);
@@ -41,11 +40,14 @@ const Agent = () => {
         <div>
             <Layout>
                 <div className="container pt-4">
+                    {/******** Header  ********/}
                     <div className="row border-bottom mb-3">
+                        {/*** Title  ***/}
                         <div className="col-8">
                             <h1>Agent #{currentAgentId}</h1>
                         </div>
                         <div className="col-4">
+                            {/*** Breadcrumb Navigation  ***/}
                             <nav aria-label="breadcrumb">
                                 <ol className="breadcrumb p-0 m-0  fs-5">
                                     <li className="breadcrumb-item">
@@ -56,6 +58,7 @@ const Agent = () => {
                             </nav>
                         </div>
                     </div>
+                    {/*** Agent data  ***/}
                     { currentAgent ? 
                         <AgentView data={currentAgent}/> : null
                     }

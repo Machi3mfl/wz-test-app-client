@@ -84,10 +84,9 @@ const Table = ({ columns, data, totalItems, title, onRowClicked }) => {
     return (  
 
         <>
-            {/* Header Table container */}
+            {/************+  Header Table container ************************/}
             <div className="mt-4 p-0 flex-md-nowrap p-0">
                 {/* Table Title */}
-
                 <div className="row mb-2">
                     {
                         title ? 
@@ -96,8 +95,7 @@ const Table = ({ columns, data, totalItems, title, onRowClicked }) => {
                             </div> : null
                     }
                 </div>
-               
-                {/*  Search in table */}
+                {/*  Search Input */}
                 <div className="input-group mb-3">
                     <span className="input-group-text bg-0">
                         <span className="material-icons fs-3 align-middle">search</span>
@@ -112,9 +110,6 @@ const Table = ({ columns, data, totalItems, title, onRowClicked }) => {
                         value={search}
                         />
                 </div>
-                   
-                
-                
             </div>
             {/* Table container */}
             <div className="table-responsive table-container">

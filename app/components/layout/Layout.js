@@ -1,7 +1,6 @@
 import React, { Fragment, useContext } from 'react';
 import Head from 'next/head';
 import { Global, css } from '@emotion/react';
-
 // components
 import Sidebar from './Sidebar';
 import Header from './Header';
@@ -13,9 +12,8 @@ import { SpinnerContext } from '../../../app/context/spinner/spinnerContext';
 
 const Layout = props => {
 
+    // spinner context
     const  { showSpinner } = useContext(SpinnerContext);
-   
-    
 
     return (  
         <Fragment>
@@ -32,9 +30,9 @@ const Layout = props => {
                     }
 
                     .feather {
-                    width: 16px;
-                    height: 16px;
-                    vertical-align: text-bottom;
+                        width: 16px;
+                        height: 16px;
+                        vertical-align: text-bottom;
                     }
 
                     /*
@@ -42,56 +40,56 @@ const Layout = props => {
                     */
 
                     .sidebar {
-                    position: fixed;
-                    top: 0;
-                    /* rtl:raw:
-                    right: 0;
-                    */
-                    bottom: 0;
-                    /* rtl:remove */
-                    left: 0;
-                    z-index: 100; /* Behind the navbar */
-                    padding: 60px 0 0; /* Height of navbar */
-                    box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
+                        position: fixed;
+                        top: 0;
+                        /* rtl:raw:
+                        right: 0;
+                        */
+                        bottom: 0;
+                        /* rtl:remove */
+                        left: 0;
+                        z-index: 100; /* Behind the navbar */
+                        padding: 60px 0 0; /* Height of navbar */
+                        box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
                     }
 
                     @media (max-width: 767.98px) {
-                    .sidebar {
-                        top: 5rem;
-                    }
+                        .sidebar {
+                            top: 5rem;
+                        }
                     }
 
                     .sidebar-sticky {
-                    position: relative;
-                    top: 0;
-                    height: calc(100vh - 48px);
-                    padding-top: .5rem;
-                    overflow-x: hidden;
-                    overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+                        position: relative;
+                        top: 0;
+                        height: calc(100vh - 48px);
+                        padding-top: .5rem;
+                        overflow-x: hidden;
+                        overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
                     }
 
                     .sidebar .nav-link {
-                    font-weight: 500;
-                    color: #333;
+                        font-weight: 500;
+                        color: #333;
                     }
 
                     .sidebar .nav-link .feather {
-                    margin-right: 4px;
-                    color: #727272;
+                        margin-right: 4px;
+                        color: #727272;
                     }
 
                     .sidebar .nav-link.active {
-                    color: #007bff;
+                        color: #007bff;
                     }
 
                     .sidebar .nav-link:hover .feather,
                     .sidebar .nav-link.active .feather {
-                    color: inherit;
+                        color: inherit;
                     }
 
                     .sidebar-heading {
-                    font-size: .75rem;
-                    text-transform: uppercase;
+                        font-size: .75rem;
+                        text-transform: uppercase;
                     }
 
                     /*
@@ -99,33 +97,33 @@ const Layout = props => {
                     */
 
                     .navbar-brand {
-                    padding-top: .75rem;
-                    padding-bottom: .75rem;
-                    font-size: 1rem;
-                    background-color: rgba(0, 0, 0, .25);
-                    box-shadow: inset -1px 0 0 rgba(0, 0, 0, .25);
+                        padding-top: .75rem;
+                        padding-bottom: .75rem;
+                        font-size: 1rem;
+                        background-color: rgba(0, 0, 0, .25);
+                        box-shadow: inset -1px 0 0 rgba(0, 0, 0, .25);
                     }
 
                     .navbar .navbar-toggler {
-                    top: .25rem;
-                    right: 1rem;
+                        top: .25rem;
+                        right: 1rem;
                     }
 
                     .navbar .form-control {
-                    padding: .75rem 1rem;
-                    border-width: 0;
-                    border-radius: 0;
+                        padding: .75rem 1rem;
+                        border-width: 0;
+                        border-radius: 0;
                     }
 
                     .form-control-dark {
-                    color: #fff;
-                    background-color: rgba(255, 255, 255, .1);
-                    border-color: rgba(255, 255, 255, .1);
+                        color: #fff;
+                        background-color: rgba(255, 255, 255, .1);
+                        border-color: rgba(255, 255, 255, .1);
                     }
 
                     .form-control-dark:focus {
-                    border-color: transparent;
-                    box-shadow: 0 0 0 3px rgba(255, 255, 255, .25);
+                        border-color: transparent;
+                        box-shadow: 0 0 0 3px rgba(255, 255, 255, .25);
                     }
 
                     .bd-placeholder-img {
@@ -147,19 +145,21 @@ const Layout = props => {
                     }
                     /* Progress Bar */
                     .progress {
-                    position: relative;
-                    height: 10px;
-                    display: block;
-                    width: 100%;
-                    background-color: #3182f9;
-                    border-radius: 2px;
-                    background-clip: padding-box;
-                    overflow: hidden; }
+                        position: relative;
+                        height: 10px;
+                        display: block;
+                        width: 100%;
+                        background-color: #3182f9;
+                        border-radius: 2px;
+                        background-clip: padding-box;
+                        overflow: hidden; 
+                    }
 
                     .progress .indeterminate {
                         background-color: #0d6efd; 
                     }
-                        .progress .indeterminate:before {
+                    
+                    .progress .indeterminate:before {
                         content: '';
                         position: absolute;
                         background-color: inherit;
@@ -227,12 +227,7 @@ const Layout = props => {
 
             <Head>
                 <title>Client Side</title>
-                {/* Materialize css 
-                     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"/>
-                    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"/>
-                */}
-                <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
-                
+                <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />      
                 {/* Bootstrap */}
                 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossOrigin="anonymous"/>
                 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js" integrity="sha384-q2kxQ16AaE6UbzuKqyBE9/u/KzioAlnx2maXQHiDX9d4/zp8Ok3f+M7DPm+Ib6IU" crossOrigin="anonymous"></script>
@@ -241,6 +236,7 @@ const Layout = props => {
             </Head>
             {/*  Header */}
             <Header />
+            {/* Loading spinner */}
             { showSpinner ? <Spinner /> : null }
             {/*  Main Container */}
             <div className="container-fluid">
@@ -248,6 +244,7 @@ const Layout = props => {
                 <div className="row">
                     {/*  Sidebar */}
                     <Sidebar />
+                    {/* enter animation */}
                     <motion.div initial="hidden" animate="visible" variants={{
                         hidden: {
                             scale: .8,

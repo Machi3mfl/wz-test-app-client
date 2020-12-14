@@ -4,8 +4,8 @@ import { GetPropertyValue } from '../../../utils/helpers';
 
 const Agent = ({ data }) => {
 
-
-    const header = [
+    // Agent card data
+    const viewData = [
         { 
             title: 'Id',
             field: 'id'
@@ -23,23 +23,21 @@ const Agent = ({ data }) => {
             field: 'total_alerts'
         }
     ]
-    
-  
 
-    if(!header || !data){
+    if(!viewData || !data){
         return null;
     }
 
     return (  
         <>
-            
             <div className="row">
+                {/* Card Data */}
                 <div className="card bg-light border-0">
                     <div className="card-body row">
                         {
-                            header && data ? 
+                            viewData && data ? 
                             
-                            header.map( (item,index) => (
+                            viewData.map( (item,index) => (
                                 <div className="col-lg col-sm-12" key={index}>
                                     <label htmlFor="staticEmail" className="col-sm-5 col-form-label col-form-label-lg text-muted">{item.title}</label>
                                     <div className="col-sm-7">
@@ -52,6 +50,7 @@ const Agent = ({ data }) => {
                 </div>
             </div>
             <div className="row">
+                 {/* Related Alert list */}
                 <AlertList alerts={data.alerts}/>
             </div>
         </>

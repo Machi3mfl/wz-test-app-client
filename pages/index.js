@@ -13,24 +13,27 @@ export default function Home() {
   const [rulesChart, setRulesChart] = useState([]);
   const [totalAlerts, setTotalAlerts] = useState(0);
 
-  const ruleContext = useContext(RuleContext);
+  // rule context
+  const  { 
+    rules,
+    getRules } = useContext(RuleContext);
 
-  const { 
-      rules,
-      getRules } = ruleContext;
 
+  // component init
   useEffect( () => {
+    // get rules to draw charts
     getRules();
   }, []);
 
 
+  // if rules change
   useEffect( () => {
     parseRulesToChartValue(rules);
   }, [rules]);
 
 
   /**
-   * 
+   * Parse rules data to chart data
    * @param {*} rules 
    */
   const parseRulesToChartValue = rules => {
@@ -60,11 +63,13 @@ export default function Home() {
     <div>
       <Layout>
         <div className="container pt-2">
+        {/*** Title  ***/}
         <div className="row pt-4 pb-2 mb-3 border-bottom">
           <h1>Dashboard</h1>
         </div>
         <div className="row mb-4 ">
           <div className="col">
+            {/*** Total Alerts Card  ***/}
             <div className="card bg-light border-0">
               <div className="card-body row text-center">    
                   <div className="col-md-12">
@@ -81,7 +86,7 @@ export default function Home() {
         <div className="row">   
           
           <div className="col-7">
-            {/* Card Bar Chart */}
+            {/****  Card Bar Chart *****/}
             <div className="card bg-light border-0">
               <div className="card-body text-center">
                 <p className="fs-4 text-muted mb-1">AGENTS</p>
@@ -90,7 +95,7 @@ export default function Home() {
             </div>
           </div>
           <div className="col-5">
-            {/* Card Pie Chart */}
+            {/****** Card Pie Chart *******/}
             <div className="card bg-light border-0">
               <div className="card-body text-center">
                 <p className="fs-4 text-muted mb-1">RULES</p>
@@ -103,8 +108,8 @@ export default function Home() {
           </div>
          
         </div>
-        </div>
-        
+      </div>
+     
       </Layout>    
     </div>
   )

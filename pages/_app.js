@@ -1,5 +1,4 @@
 import '../styles/globals.css'
-
 // States
 import AlertState from '../app/context/alerts/alertState';
 import AgentState from '../app/context/agents/agentState';

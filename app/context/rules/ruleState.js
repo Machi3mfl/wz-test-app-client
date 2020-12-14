@@ -32,11 +32,14 @@ const RuleState = props => {
     // create reducer
     const [state, dispatch] = useReducer(AlertReducer, initialState);
 
+    // items per page in table
     const { itemsPerPage } = state;
 
     const router = useRouter();
+   
     /**
-     * get proyects from api
+     * Get Rules from api, can be filtered by page
+     * @param {*} pageIndex optional
      */
     const getRules = async (pageIndex) => {
 
@@ -74,6 +77,7 @@ const RuleState = props => {
 
     /**
      * 
+     * Redirect to rule detail and set id in state
      * @param {*} id 
      */
     const goToRuleDetail = id => {
@@ -82,6 +86,7 @@ const RuleState = props => {
     }
 
     /**
+     * Set selected rule id in state
      * 
      * @param {*} id 
      */
@@ -93,6 +98,8 @@ const RuleState = props => {
     }
 
     /**
+     * 
+     * get rule by id from api
      * 
      * @param {*} id 
      */
