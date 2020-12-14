@@ -28,7 +28,7 @@ const Layout = props => {
 
                     body {
                         font-size: .875rem;
-                        font-family: 'Lato';
+                        font-family: 'Lato' sans-serif;
                     }
 
                     .feather {
