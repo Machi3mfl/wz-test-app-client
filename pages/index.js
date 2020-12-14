@@ -1,65 +1,111 @@
-import Head from 'next/head'
-import styles from '../styles/Home.module.css'
+import { useContext, useEffect, useState } from 'react';
+//component
+import Layout from '../app/components/layout/Layout'
+// chart
+import PieChart from '../app/components/layout/charts/pie-chart/PieChart';
+import BarChart from '../app/components/layout/charts/bar-chart/BarChart';
+// state
+import RuleContext from '../app/context/rules/ruleContext';
+
 
 export default function Home() {
+
+  const [rulesChart, setRulesChart] = useState([]);
+  const [totalAlerts, setTotalAlerts] = useState(0);
+
+  const ruleContext = useContext(RuleContext);
+
+  const { 
+      rules,
+      getRules } = ruleContext;
+
+  useEffect( () => {
+    getRules();
+  }, []);
+
+
+  useEffect( () => {
+    parseRulesToChartValue(rules);
+  }, [rules]);
+
+
+  /**
+   * 
+   * @param {*} rules 
+   */
+  const parseRulesToChartValue = rules => {
+    let data = [];
+    let total = 0;
+
+    rules.forEach(element => {
+      
+      data.push({
+        label: element.description.toUpperCase(),
+        value: element.total_alerts
+      });
+
+      total = total + element.total_alerts;
+      
+    });
+
+
+    // set rules chart data
+    setRulesChart(data);
+    // set total alerts by rules
+    setTotalAlerts(total);
+
+  }
+
   return (
-    <div className={styles.container}>
-      <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
-      <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
-
-        <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>pages/index.js</code>
-        </p>
-
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h3>Documentation &rarr;</h3>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h3>Learn &rarr;</h3>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
-            className={styles.card}
-          >
-            <h3>Examples &rarr;</h3>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/import?filter=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h3>Deploy &rarr;</h3>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
+    <div>
+      <Layout>
+        <div className="container pt-2">
+        <div className="row pt-4 pb-2 mb-3 border-bottom">
+          <h1>Dashboard</h1>
         </div>
-      </main>
-
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel Logo" className={styles.logo} />
-        </a>
-      </footer>
+        <div className="row mb-4 ">
+          <div className="col">
+            <div className="card bg-light border-0">
+              <div className="card-body row text-center">    
+                  <div className="col-md-12">
+                      <p className="fs-4 text-muted mb-1">TOTAL ALERTS</p>
+                      <h1 className="font-weight-normal mb-3">
+                          <span className="material-icons fs-1 align-middle">campaign</span>
+                          <span className="align-middle">{totalAlerts}</span>
+                      </h1>
+                  </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="row">   
+          
+          <div className="col-7">
+            {/* Card Bar Chart */}
+            <div className="card bg-light border-0">
+              <div className="card-body text-center">
+                <p className="fs-4 text-muted mb-1">AGENTS</p>
+                <BarChart id="bar-chart" />
+              </div>
+            </div>
+          </div>
+          <div className="col-5">
+            {/* Card Pie Chart */}
+            <div className="card bg-light border-0">
+              <div className="card-body text-center">
+                <p className="fs-4 text-muted mb-1">RULES</p>
+                <PieChart 
+                  data={rulesChart}
+                  outerRadius={120}
+                  innerRadius={10}/>
+              </div>
+            </div>
+          </div>
+         
+        </div>
+        </div>
+        
+      </Layout>    
     </div>
   )
 }
