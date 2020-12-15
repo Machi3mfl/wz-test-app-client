@@ -9,7 +9,7 @@ function PieChart(props) {
   } = props;
 
   const margin = {
-    top: 50, right: 80, bottom: 50, left: 80,
+    top: 10, right: 80, bottom: 50, left: 80,
   };
 
   const width = 2 * outerRadius + margin.left + margin.right;
