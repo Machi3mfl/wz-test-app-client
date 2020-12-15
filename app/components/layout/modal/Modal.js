@@ -21,7 +21,7 @@ const ModalContainer = styled(motion.div)`
   background-color: white;
   position: relative;
   top: 50%;
-  left: 60%;
+  left: 57%;
   transform: translate(-50%, -50%);
   border-radius: 12px;
 `;

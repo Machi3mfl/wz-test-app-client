@@ -31,7 +31,7 @@ const Alert = ({data}) => {
                             viewData && data ? 
                             
                             viewData.map( (item,index) => (
-                                <div className="col col-sm-4" key={index}>
+                                <div className="col-lg col-sm-12" key={index}>
                                     <h4>{item.title}</h4>
                                     <p className="fs-6">
                                         { item.link ? 

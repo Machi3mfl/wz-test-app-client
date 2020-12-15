@@ -85,7 +85,7 @@ export default function Home() {
         </div>
         <div className="row">   
           
-          <div className="col-7">
+          <div className="col-lg-7 col-sm-12 mb-3">
             {/****  Card Bar Chart *****/}
             <div className="card bg-light border-0">
               <div className="card-body text-center">
@@ -94,7 +94,7 @@ export default function Home() {
               </div>
             </div>
           </div>
-          <div className="col-5">
+          <div className="col-lg-7 col-sm-12">
             {/****** Card Pie Chart *******/}
             <div className="card bg-light border-0">
               <div className="card-body text-center">
