@@ -94,7 +94,7 @@ export default function Home() {
               </div>
             </div>
           </div>
-          <div className="col-lg-7 col-sm-12">
+          <div className="col-lg-5 col-sm-12">
             {/****** Card Pie Chart *******/}
             <div className="card bg-light border-0">
               <div className="card-body text-center">
